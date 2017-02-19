@@ -18,9 +18,8 @@ class Home extends MY_Controller
      */
     public function index()
     {
-        $sStyle = $this->css(['sample_style.css'], 'sample');
-        $sScript = $this->js(['sample_source.js'], 'sample');
+        $sStyle = $this->css(['home/nav.css'], 'home/index');
 
-        $this->blade->view('home', ['js' => $sScript, 'css' => $sStyle]);
+        $this->blade->view('home/index', ['css' => $sStyle]);
     }
 }

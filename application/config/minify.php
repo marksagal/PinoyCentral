@@ -20,10 +20,10 @@ $config['assets_dir_css'] = '';
 $config['assets_dir_js'] = '';
 
 // where to look for css files (default value: 'assets/css')
-$config['css_dir'] = APPPATH . 'assets/css';
+$config['css_dir'] = APPPATH . 'assets' . DS . 'css';
 
 // where to look for js files (default value: 'assets/js')
-$config['js_dir'] = APPPATH . 'assets/js';
+$config['js_dir'] = APPPATH . 'assets' . DS . 'js';
 
 // default file name for css (default value: 'style.css')
 $config['css_file'] = 'styles.css';
