@@ -1,5 +1,5 @@
 <?php
-abstract class MY_Controller extends CI_Controller
+abstract class CoreController extends CI_Controller
 {
     public function __construct()
     {
@@ -43,5 +43,14 @@ abstract class MY_Controller extends CI_Controller
         $this->minify->deploy_css();
 
         return '/assets/css/' . $sPath . '_styles.min.css';
+    }
+
+    protected function isDevelopment()
+    {
+        if (ENVIRONMENT === 'development') {
+            return true;
+        }
+
+        return false;
     }
 }
