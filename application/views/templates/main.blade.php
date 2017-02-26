@@ -25,6 +25,8 @@
     @yield('content')
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="/assets/jquery/js/jquery-3.1.1.min.js"></script>
+    <!-- jQuery Cookie -->
+    <script src="/assets/js/js.cookie.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
     @if(isset($js) === true)

@@ -16,10 +16,10 @@
     <div id="navbar" class="navbar-collapse collapse">
       <form class="navbar-form navbar-right">
         <div class="form-group">
-          <input type="text" placeholder="Username" class="form-control">
+          <input class="username" type="text" placeholder="Username" class="form-control">
         </div>
         <div class="form-group">
-          <input type="password" placeholder="Password" class="form-control">
+          <input class="password" type="password" placeholder="Password" class="form-control">
         </div>
         <button type="submit" class="login btn btn-success">Log in</button>
       </form>

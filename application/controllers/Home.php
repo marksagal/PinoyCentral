@@ -18,8 +18,9 @@ class Home extends CoreController
      */
     public function index()
     {
-        $sStyle = $this->css(['home/nav.css'], 'home/index');
-
-        $this->blade->view('home/index', ['css' => $sStyle]);
+        $this->blade->view('home/index', [
+            'css' => $this->css(['home/nav.css'], 'home/index'),
+            'js' => $this->js(['ajax.js', 'home/login.js'], 'home/login')
+        ]);
     }
 }
