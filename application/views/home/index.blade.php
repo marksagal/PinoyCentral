@@ -14,14 +14,17 @@
       <a class="navbar-brand" href="#">PinoyCentral</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
-      <form class="navbar-form navbar-right">
+      <form role="form" id="login_form" class="navbar-form navbar-right" data-toggle="validator">
+          <input type="hidden" class="hash" name="{{ $csrf_name }}" value="{{ $csrf_token }}">
         <div class="form-group">
-          <input class="username" type="text" placeholder="Username" class="form-control">
+          <input class="username form-control" type="text"  pattern="^[a-zA-Z0-9]{3,}$" placeholder="Username" required>
+          <span class="help-inline with-errors"></span>
         </div>
         <div class="form-group">
-          <input class="password" type="password" placeholder="Password" class="form-control">
+          <input class="password form-control" type="password" pattern="^.{3,}$" placeholder="Password" required>
+          <span class="help-inline with-errors"></span>
         </div>
-        <button type="submit" class="login btn btn-success">Log in</button>
+        <button type="submit" class="login btn btn-primary">Log in</button>
       </form>
     </div><!--/.navbar-collapse -->
   </div>

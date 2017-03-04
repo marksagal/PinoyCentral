@@ -20,7 +20,9 @@ class Home extends CoreController
     {
         $this->blade->view('home/index', [
             'css' => $this->css(['home/nav.css'], 'home/index'),
-            'js' => $this->js(['ajax.js', 'home/login.js'], 'home/login')
+            'js' => $this->js(['ajax.js', 'home/login.js'], 'home/login'),
+            'csrf_name' => $this->security->get_csrf_token_name(),
+            'csrf_token' => $this->security->get_csrf_hash()
         ]);
     }
 }

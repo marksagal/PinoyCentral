@@ -2,6 +2,24 @@ class Ajax
 {
     constructor()
     {
+        // ..
+    }
+
+    post(oData, sUrl, iTimeout = 8000)
+    {
+        return new Promise((resolve, reject) => {
+            this.request({
+                method: 'POST',
+                url: sUrl,
+                data: oData
+            })
+            .then((oResponse) => {
+                resolve(oResponse);
+            })
+            .catch((oResponse) => {
+                reject(oResponse);
+            });
+        }, iTimeout);
     }
 
     get(oData, sUrl, iTimeout = 8000)
@@ -37,6 +55,9 @@ class Ajax
                     clearTimeout(timeout);
                     resolve(oResponse);
                 }
+            })
+            .fail((e) => {
+                reject(e);
             });
         });
     }

@@ -29,6 +29,8 @@
     <script src="/assets/js/js.cookie.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Bootstrap Validator -->
+    <script src="/assets/bootstrap/js/validator.min.js"></script>
     @if(isset($js) === true)
     <!-- Include all compiled scripts -->
     <script src="{{ $js }}"></script>
