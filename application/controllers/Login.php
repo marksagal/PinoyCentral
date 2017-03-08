@@ -1,18 +1,25 @@
 <?php
+
+use \users\login\Rest;
+
 class Login extends CoreController
 {
-    public function rest($sHash = null)
+    public function rest($sClient = null)
     {
         $sUsername = $this->input->get('username');
         $sPassword = $this->input->get('password');
-        $sMatch = $this->input->cookie('csrf', true);
-        $bResult = ($sMatch === $sHash) ? true : false;
-        echo json_encode([
-            'bResult'  => $bResult,
-            'username' => $sUsername,
-            'password' => $sPassword,
-            'client' => $sHash,
-            'server' => $sMatch
+        $sToken = $this->input->cookie('token', true);
+        $this->load->model('users');
+        $oRest = new Rest($this->users, $this->input->cookie('token', true));
+        $mResponse = $oRest->run([
+            'username' => $this->input->get('username'),
+            'password' => $this->input->get('password'),
+            'tokens' => array(
+                'server' => $sToken,
+                'client' => $sClient
+            )
         ]);
+
+        echo json_encode($mResponse);
     }
 }
