@@ -1,6 +1,6 @@
 <?php
 
-use \users\login\Rest;
+use users\login\Rest;
 
 class Login extends CoreController
 {
@@ -9,8 +9,8 @@ class Login extends CoreController
         $sUsername = $this->input->get('username');
         $sPassword = $this->input->get('password');
         $sToken = $this->input->cookie('token', true);
-        $this->load->model('users');
-        $oRest = new Rest($this->users, $this->input->cookie('token', true));
+        $this->load->model('Users');
+        $oRest = new Rest($this->Users);
         $mResponse = $oRest->run([
             'username' => $this->input->get('username'),
             'password' => $this->input->get('password'),

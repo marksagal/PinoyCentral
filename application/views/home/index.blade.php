@@ -17,7 +17,7 @@
       <form role="form" id="login_form" class="navbar-form navbar-right" data-toggle="validator">
           <input type="hidden" class="hash" name="{{ $csrf_name }}" value="{{ $csrf_token }}">
         <div class="form-group">
-          <input class="username form-control" type="text"  pattern="^[a-zA-Z0-9]{3,}$" placeholder="Username" required>
+          <input class="username form-control" type="text" pattern="^[a-zA-Z0-9]{3,}$" placeholder="Username" required>
           <span class="help-inline with-errors"></span>
         </div>
         <div class="form-group">

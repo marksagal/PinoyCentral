@@ -1,4 +1,5 @@
 <?php
+
 abstract class CoreController extends CI_Controller
 {
     public function __construct()
@@ -8,8 +9,19 @@ abstract class CoreController extends CI_Controller
         spl_autoload_register(function ($sClass) {
             $sLogicPath = APPPATH . 'logic' . DS . $sClass . '.php';
 
-            if (file_exists($sLogicPath) === true && empty($sClass) !== true) {
+            if (file_exists($sLogicPath) === true
+            && empty($sClass) !== true) {
                 require_once $sLogicPath;
+            }
+
+            if (property_exists($sClass, 'oCI') === true
+            && isset($sClass::$oCI) === false) {
+                $sClass::$oCI = $this;
+            }
+
+            if (method_exists($sClass, 'init') === true
+            && is_callable([$sClass, 'init'])) {
+                $sClass::init();
             }
         });
     }

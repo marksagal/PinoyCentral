@@ -1,4 +1,5 @@
 <?php
+
 class Migrate extends CoreController
 {
     public function index()

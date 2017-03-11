@@ -21,4 +21,16 @@ $(document).ready(() => {
             });
         }
     });
+
+    username.tooltip({
+         placement: 'bottom',
+         trigger: 'focus',
+         title: 'Input Username'
+    });
+
+    password.tooltip({
+         placement: 'bottom',
+         trigger: 'focus',
+         title: 'Input Password'
+    });
 });

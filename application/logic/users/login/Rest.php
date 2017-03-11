@@ -1,5 +1,8 @@
 <?php
+
 namespace users\login;
+
+use util\Url;
 
 class Rest extends \users\Base
 {
@@ -10,37 +13,58 @@ class Rest extends \users\Base
 
     protected function response($aParams)
     {
-        $mToken = $this->checkTokens($aParams['tokens']);
+        $aTokens = $aParams['tokens'];
+        $sUsername = $aParams['username'];
+        $sPassword = $aParams['password'];
+
+        $mToken = $this->_checkTokens($aTokens);
+
         if ($mToken !== true) {
             return $mToken;
         }
 
-        return $this->checkUser($aParams['username'], $aParams['password']);
+        $aUser = $this->_checkUser($sUsername, $sPassword);
+
+        if ($aUser['bResult'] !== true) {
+            return $aUser;
+        }
+
+        $this->setUser($aUser['aInfo']);
+
+        return array(
+            'bResult' => true,
+            'location' => Url::cache()
+        );
     }
 
-    private function checkUser($sUsername, $sPassword)
+    private function _checkUser($sUsername, $sPassword)
     {
         $sPassword = $this->password($sPassword);
-        $aResult = $this->oModel->userInfo($sUsername);
+        $aUser = current($this->oModel->userInfo($sUsername));
 
-        if (empty($aResult) === true) {
+        if ($aUser === false) {
             return array(
                 'bResult' => false,
                 'sMessage' => 'Invalid Username'
             );
         }
 
-        if (current($aResult)['password'] !== $sPassword) {
+        if ($aUser['password'] !== $sPassword) {
             return array(
                 'bResult' => false,
                 'sMessage' => 'Invalid Password'
             );
         }
 
-        return true;
+        unset($aUser['password']);
+
+        return array(
+            'bResult' => true,
+            'aInfo' => $aUser
+        );
     }
 
-    private function checkTokens($aTokens)
+    private function _checkTokens($aTokens)
     {
         if ($aTokens['server'] !== $aTokens['client']) {
             return array(
