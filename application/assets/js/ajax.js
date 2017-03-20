@@ -1,51 +1,46 @@
 class Ajax
 {
-    constructor()
-    {
-        // ..
-    }
-
     post(oData, sUrl, iTimeout = 8000)
     {
         return new Promise((resolve, reject) => {
-            this.request({
+            this._request({
                 method: 'POST',
                 url: sUrl,
                 data: oData
-            })
+            }, iTimeout)
             .then((oResponse) => {
                 resolve(oResponse);
             })
             .catch((oResponse) => {
                 reject(oResponse);
             });
-        }, iTimeout);
+        });
     }
 
     get(oData, sUrl, iTimeout = 8000)
     {
         return new Promise((resolve, reject) => {
-            this.request({
+            this._request({
                 method: 'GET',
                 url: sUrl,
                 data: oData
-            })
+            }, iTimeout)
             .then((oResponse) => {
                 resolve(oResponse);
             })
             .catch((oResponse) => {
                 reject(oResponse);
             });
-        }, iTimeout);
+        });
     }
 
-    request(oParams, iTimeOut = 8000)
+    _request(oParams, iTimeOut = 8000)
     {
         return new Promise((resolve, reject) => {
-            var timeout = () => {
+            var timeout = setTimeout(() => {
                 reject('Request Timeout');
-            }
-            setTimeout(timeout, iTimeOut);
+            }, iTimeOut);
+
             $.ajax({
                 method: oParams.method,
                 url: oParams.url,
